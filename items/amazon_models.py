@@ -81,7 +81,7 @@ class Item(object):
                                 rating_count = int(rating_div.find_all('a')[1].text)
                                 rating = float(rating_div.find('i').text.split(" ")[0])
                                 title = all_a[1].text.strip()
-                                link = all_a[1]['href']
+                                link = all_a[1]['href'] + "&tag=best10stoream-20"
                                 img = all_a[0].find('img')['src']
 
                                 if title and 'https' in link and not "Learn more about Sponsored Products." in title and len(
@@ -176,7 +176,7 @@ class Item(object):
                                 if 'title' in a.attrs and 'href' in a.attrs:
                                     title = a['title']
                                     # print(title)
-                                    link = a['href']
+                                    link = a['href'] +  "&tag=best10stoream-20"
 
 
 
