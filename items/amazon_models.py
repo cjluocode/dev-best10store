@@ -4,11 +4,13 @@ from bs4 import BeautifulSoup
 from .algorithms import *
 import random
 from .agent_list import user_agent_list
-from .proxy_scraper import get_proxies
+from .proxy_scraper import get_proxies, proxy_list
 from itertools import cycle
 from django.core.mail import send_mail
+# from .TorCrawler import TorCrawler
 # Create Amazon item model
 
+# crawler = TorCrawler()
 proxies = get_proxies()
 proxy_pool = cycle(proxies)
 
@@ -26,16 +28,16 @@ class Item(object):
     def get_items(self,q_word=None):
         # Set item list
         item_list = []
-
+        # print(crawler.ip)
         start_time = time.time()
 
         for page in range(1, 3):
-            # proxies pool
-
-
+            print('loop ' + str(page) + " page")
             # set user agent
             user_agent = random.choice(user_agent_list)
+
             print(user_agent)
+
             headers = {
                 'User-Agent': user_agent,
             }
@@ -45,12 +47,16 @@ class Item(object):
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
-            proxy = next(proxy_pool)
-            print(proxy)
+            # proxy = random.choice(proxy_list)
+
+            # print(proxy)
+
+
             try:
+                print(str(page) + " time to request the url")
                 r = requests.get(url,
                                  headers=headers,
-                                 proxies={"http": proxy, "https": proxy},
+                                 # proxies={"http": proxy, "https": proxy},
                                  timeout=5)
 
                 print("status_code: " + str(r.status_code))
@@ -127,13 +133,14 @@ class Item(object):
 
             # Set User agent
             user_agent = random.choice(user_agent_list)
+
             print(user_agent)
             headers = {
                 'User-Agent': user_agent
             }
 
             #Set proxy
-            proxy = next(proxy_pool)
+            proxy = random.choice(proxy_list)
             print(proxy)
             try:
                 r = requests.get(url,

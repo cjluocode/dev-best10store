@@ -10,7 +10,9 @@ idna==2.6
 lxml==4.2.1
 newrelic==3.2.1.93
 psycopg2==2.7.4
+PySocks==1.6.8
 pytz==2018.4
 requests==2.18.4
 scrapy-proxymesh==0.0.3
+stem==1.6.0
 urllib3==1.22
