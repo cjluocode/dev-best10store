@@ -16,10 +16,6 @@ def item_list(request):
             # Testing Mode // Backup  Search if first search len() == 0:
             # search_result = testParse(q_word=q_word)
 
-            if len(search_result) == 0:
-                print("Where is backup")
-                search_result = item.get_square_items(q_word)
-
             context = {
              "item_list": search_result,
 
