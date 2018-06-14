@@ -2,6 +2,10 @@ from django.shortcuts import render
 from dev_best10.settings import *
 from .amazon_models import Item
 from .tests import testParse
+from rq import Queue
+from worker import conn
+
+q = Queue(connection=conn)
 
 
 # Home Page
@@ -11,10 +15,8 @@ def item_list(request):
 
         if q_word:
             item = Item()
-            # FIRST SEARCH
             search_result = item.get_items(q_word=q_word)
-            # Testing Mode // Backup  Search if first search len() == 0:
-            # search_result = testParse(q_word=q_word)
+
 
             context = {
              "item_list": search_result,
