@@ -80,7 +80,6 @@ def parse_rating(item):
 
             rating = float(raw_rating[0].split("out")[0])
 
-            print(rating)
             return rating
 
     except Exception as e:
@@ -94,3 +93,10 @@ def set_url(q_word, page):
     keyword_url = '&field-keywords=%s' % q_word
     amazon_url = pre_url + keyword_url + '&page={0}'.format(page)
     return amazon_url
+
+
+def get_hotscore(rating):
+
+    hotscore = rating * 20
+
+    return int(hotscore)

@@ -21,20 +21,21 @@ class Item(object):
         self.image    = ""
         self.price    = 1
 
+
     def get_items(self,q_word=None):
+
         start_time = time.time()
 
         # Set item list
         item_list = []
 
 
-        for page in range(1, 3):
+        for page in range(1, 7):
             print('loop ' + str(page) + " page")
 
             # set user agent
-            user_agent = random.choice(user_agent_list)
             headers = {
-                'User-Agent': user_agent,
+                'User-Agent': random.choice(user_agent_list),
             }
 
             #Set Url
@@ -42,36 +43,27 @@ class Item(object):
 
 
             try:
+                print("getting url")
 
-                r = requests.get(url,
-                                 headers=headers,
-                                 timeout=5)
+                r = requests.get(url,headers=headers,timeout=5)
 
-                print("status_code: " + str(r.status_code))
+                print("status_code " + str(r.status_code))
+
 
                 if int(r.status_code) == 200:
                     try:
                         parser = html.fromstring(r.content)
                         all_item_container = parser.xpath(XPATH_ITEM_CONTAINER)
 
+
                         for item in all_item_container:
 
-                            # Get the title
+                            # Parse the title,link,image,rating_count,rating
                             item_title = parse_title(item)
-
-                            # Get the Link
                             item_link = parse_link(item)
-
-                            # Get image
                             item_image_url = parse_image(item)
-
-                            # Get rating counts
                             item_rating_counts = parse_rating_count(item)
-
-
-                            # Get the ratings
                             item_rating = parse_rating(item)
-
 
 
                             #Create new item then append to
@@ -84,6 +76,7 @@ class Item(object):
                                 new_item.rating_count = item_rating_counts
                             if item_rating:
                                 new_item.rating = item_rating
+                                new_item.hotscore = get_hotscore(item_rating)
 
 
                             item_list.append(new_item)
@@ -94,12 +87,14 @@ class Item(object):
 
                 print("--- %s seconds ---" % (time.time() - start_time))
 
-            except:
-                pass
+            except Exception as e:
+                print(e)
 
         sorted_item_list = self.sort_item_list(item_list)
 
         return sorted_item_list
+
+
 
 
     def sort_item_list(self,item_list):
