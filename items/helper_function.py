@@ -7,7 +7,7 @@ XPATH_IMAGE = ".//a[@class='a-link-normal a-text-normal']/img[@class='s-access-i
 XPATH_RATING_COUNT_1 = ".//div[@class='a-row a-spacing-mini']/a[@class='a-size-small a-link-normal a-text-normal']"
 XPATH_RATING_COUNT_2 = ".//div[@class='a-row a-spacing-top-micro']/a[@class='a-size-small a-link-normal a-text-normal']"
 XPATH_RATING_COUNT_3 = ".//div[@class='a-row a-spacing-top-mini a-spacing-none']/a[@class='a-size-small a-link-normal a-text-normal']"
-XPATH_RATING = ".//span[@class='a-icon-alt']/text()"
+XPATH_RATING = ".//i[@class='a-icon a-icon-star a-star-4']/span[@class='a-icon-alt']/text()"
 
 
 def parse_title(item):
@@ -65,16 +65,26 @@ def parse_rating_count(item):
 
 def parse_rating(item):
 
-    raw_rating = item.xpath(XPATH_RATING)
-    if not raw_rating:
-        print('need new xpath')
+    raw_rating = item.xpath(".//span[@class='a-icon-alt']/text()")
 
     try:
-        if len(raw_rating) >= 1:
-            rating = float(raw_rating[0].split("out")[0])
+
+        if "Prime" in raw_rating and len(raw_rating) >1:
+
+            removed_prime_rating = [x for x in raw_rating if x != 'Prime']
+            rating = float(removed_prime_rating[0].split("out")[0])
+
             return rating
-    except Exception as error:
-        print(error)
+
+        elif len(raw_rating) == 1:
+
+            rating = float(raw_rating[0].split("out")[0])
+
+            print(rating)
+            return rating
+
+    except Exception as e:
+        print(e)
 
 
 

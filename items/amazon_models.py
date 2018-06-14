@@ -74,7 +74,6 @@ class Item(object):
 
 
 
-
                             #Create new item then append to
                             new_item = Item()
                             new_item.title = item_title
