@@ -4,7 +4,7 @@ from .algorithms import *
 import random
 from .agent_list import user_agent_list
 from lxml import html
-from .xpath import *
+from .helper_function import *
 import toolz
 # Create Amazon item model
 
@@ -22,11 +22,11 @@ class Item(object):
         self.price    = 1
 
     def get_items(self,q_word=None):
+        start_time = time.time()
 
         # Set item list
         item_list = []
 
-        start_time = time.time()
 
         for page in range(1, 3):
             print('loop ' + str(page) + " page")
@@ -38,13 +38,11 @@ class Item(object):
             }
 
             #Set Url
-            pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
-            keyword_url = '&field-keywords=%s' % q_word
-            url = pre_url + keyword_url + '&page={0}'.format(page)
+            url = set_url(q_word,page)
 
 
             try:
-                print(str(page) + " time to request the url")
+
                 r = requests.get(url,
                                  headers=headers,
                                  timeout=5)
@@ -59,43 +57,38 @@ class Item(object):
                         for item in all_item_container:
 
                             # Get the title
-                            raw_title = item.xpath(XPATH_TITLE)
-                            if len(raw_title) > 0:
-                                title = raw_title[0]
+                            item_title = parse_title(item)
 
                             # Get the Link
-                            raw_link = item.xpath(XPATH_LINK)
-                            if len(raw_link) > 0:
-                                link = raw_link[0]
+                            item_link = parse_link(item)
 
                             # Get image
-                            raw_image = item.xpath(XPATH_IMAGE)
-                            if len(raw_image) >= 1:
-                                image = raw_image[-1]
+                            item_image_url = parse_image(item)
 
                             # Get rating counts
-                            raw_rating_counts = item.xpath(XPATH_RATING_COUNT)
-                            if len(raw_rating_counts) >= 1:
-                                raw_rating_counts = raw_rating_counts[-1].text
-                                rating_counts = int(raw_rating_counts.replace(',', ''))
+                            item_rating_counts = parse_rating_count(item)
+
 
                             # Get the ratings
-                            raw_rating = item.xpath(XPATH_RATING)
-                            if len(raw_rating) >= 1:
-                                rating = float(raw_rating[-1].split("out")[0])
+                            item_rating = parse_rating(item)
+
 
 
 
                             #Create new item then append to
                             new_item = Item()
-                            new_item.title = title
-                            new_item.link = link
-                            new_item.image = image
-                            new_item.rating_count = rating_counts
-                            new_item.rating = rating
+                            new_item.title = item_title
+                            new_item.link = item_link
+                            new_item.image = item_image_url
+
+                            if item_rating_counts:
+                                new_item.rating_count = item_rating_counts
+                            if item_rating:
+                                new_item.rating = item_rating
 
 
                             item_list.append(new_item)
+
 
                     except Exception as e:
                         print(e)
