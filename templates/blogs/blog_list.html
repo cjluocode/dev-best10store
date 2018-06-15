@@ -1,7 +1,23 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+    <br>
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-6">
+          {% include 'blogs/card.html' with blog=blog %}
+        </div>
+           {% endfor %}
+    </div>
+    <br>
+    <hr>
 
-<h1>Blog List</h1>
-{% for blog in blogs %}
+</div>
 
-<a href="/blog/{{blog.id}}/">{{ blog.title }}</a> <br>
+{% endblock %}
 
-{% endfor %}
+
+
+
+
+
