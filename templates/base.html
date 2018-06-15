@@ -31,15 +31,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Alike Angular|ABeeZee|Amethysta' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+<style>
+.content-text {
+    font-family: 'Amethysta';font-size: 21px;
+    font-weight: lighter;
+    }
+</style>
 
   </head>
   <body>
    {% include 'navbar.html'  %}
-
-
     {% block content %}
     {% endblock %}
 
