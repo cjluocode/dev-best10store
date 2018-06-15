@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'landing_page',
     'profiles',
     'bootstrap3',
+    #blog
+    'blogs',
 ]
 
 MIDDLEWARE = [

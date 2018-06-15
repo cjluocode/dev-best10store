@@ -30,7 +30,7 @@ class Item(object):
         item_list = []
 
 
-        for page in range(1, 7):
+        for page in range(1, 10):
             print('loop ' + str(page) + " page")
 
             # set user agent
