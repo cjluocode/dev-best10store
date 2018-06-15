@@ -21,5 +21,8 @@ def blog_detail(request, id):
 
     return render(request, 'blogs/blog_detail.html',context)
 
+def testing(request):
+    return render(request, 'blogs/testing.html')
+
 
 

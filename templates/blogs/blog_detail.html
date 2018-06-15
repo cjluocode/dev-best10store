@@ -1,5 +1,9 @@
-<h1>blog detail </h1>
+{% extends 'base.html' %}
 
-{{ blog.title }}
-<br>
-{{blog.content}}
+{% block content%}
+
+<div class="container">
+    {{blog.content|safe }}
+</div>
+
+{% endblock %}
