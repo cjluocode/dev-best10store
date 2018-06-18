@@ -52,7 +52,7 @@ class Item(object):
                 r = requests.get(url,
                                  headers=headers,
                                  proxies=proxies,
-                                 verify=False,
+                                 # verify=False,
                                  timeout=5)
 
                 print("status_code " + str(r.status_code))
