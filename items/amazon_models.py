@@ -30,7 +30,7 @@ class Item(object):
         item_list = []
 
 
-        for page in range(1, 10):
+        for page in range(1, 3):
             print('loop ' + str(page) + " page")
 
             # set user agent
@@ -41,11 +41,19 @@ class Item(object):
             #Set Url
             url = set_url(q_word,page)
 
+            proxies = {'http': 'http://83.149.70.159:13042',
+                       'https': 'http://83.149.70.159:13042',
+                       }
+
 
             try:
                 print("getting url")
 
-                r = requests.get(url,headers=headers,timeout=5)
+                r = requests.get(url,
+                                 headers=headers,
+                                 proxies=proxies,
+                                 verify=False,
+                                 timeout=5)
 
                 print("status_code " + str(r.status_code))
 
