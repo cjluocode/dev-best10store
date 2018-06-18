@@ -41,8 +41,8 @@ class Item(object):
             #Set Url
             url = set_url(q_word,page)
 
-            proxies = {'http': 'http://83.149.70.159:13042',
-                       'https': 'http://83.149.70.159:13042',
+            proxies = {'http': 'http://37.48.118.90:13042',
+                       'https': 'http://37.48.118.90:13042',
                        }
 
 
