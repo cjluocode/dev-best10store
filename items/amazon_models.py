@@ -51,7 +51,7 @@ class Item(object):
 
                 r = requests.get(url,
                                  headers=headers,
-                                 proxies=proxies,
+                                 # proxies=proxies,
                                  # verify=False,
                                  timeout=5)
 
