@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^', include('landing_page.urls',namespace='landing_page')),
     url(r'^', include('profiles.urls', namespace='profiles')),
     url(r'^', include('blogs.urls', namespace='blogs')),
+    url(r'^', include('featured_products.urls', namespace='products')),
 ]

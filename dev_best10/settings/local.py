@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     #blog
     'blogs',
+    # featured product
+    'featured_products',
 ]
 
 MIDDLEWARE = [

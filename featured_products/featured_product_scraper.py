@@ -1,6 +1,5 @@
 import time
 import requests
-from .algorithms import *
 import random
 from .agent_list import user_agent_list
 from lxml import html
@@ -9,9 +8,8 @@ import toolz
 # Create Amazon item model
 
 
+class FeaturedProduct(object):
 
-
-class Item(object):
     def __init__(self):
         self.title = ''
         self.link  = ""
@@ -22,7 +20,7 @@ class Item(object):
         self.price    = 1
 
 
-    def get_items(self,q_word=None):
+    def get_products(self,q_word=None):
 
         start_time = time.time()
 
@@ -69,7 +67,7 @@ class Item(object):
 
 
                             #Create new item then append to
-                            new_item = Item()
+                            new_item = FeaturedProduct()
                             new_item.title = item_title
                             new_item.link = item_link
                             new_item.image = item_image_url

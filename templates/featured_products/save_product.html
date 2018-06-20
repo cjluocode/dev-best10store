@@ -1,0 +1,18 @@
+<h1>save products</h1>
+    <form method="POST"> {% csrf_token %}
+      <div class="input-group">
+     <input type="text" class="form-control" name="query_word" placeholder="Enter here...">
+     <span class="input-group-btn">
+    <button class="btn btn-default" type="submit">LOOK UP</button>
+  </span>
+      </div>
+</form>
+
+{% for product in product_list %}
+
+<p>{{ product.title }}</p>
+<img src="{{ product.image}}">
+<p>{{ product.link }}</p>
+<p>{{ product.rating}}</p>
+<br>
+{% endfor %}
