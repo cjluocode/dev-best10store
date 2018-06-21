@@ -1,0 +1,19 @@
+
+<!-- Junbotron Area-->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+      <p class="display-4 font-weight-bold">Best10</p>
+      <br>
+    <p class="h4 font-weight-light">Find top 10 items you want with no effort</p>
+      <br>
+    <br>
+      <form method="POST" action="/result/"> {% csrf_token %}
+      <div class="input-group">
+     <input type="text" class="form-control" name="query_word" placeholder="Enter here...">
+     <span class="input-group-btn">
+    <button class="btn btn-default" type="submit">LOOK UP</button>
+  </span>
+      </div>
+</form>
+  </div>
+</div>

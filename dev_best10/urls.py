@@ -20,7 +20,7 @@ from landing_page.views import about, contact
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.item_list, name='item-list'),
+    url(r'^', include('items.urls', namespace='items')),
     url(r'^', include('landing_page.urls',namespace='landing_page')),
     url(r'^', include('profiles.urls', namespace='profiles')),
     url(r'^', include('blogs.urls', namespace='blogs')),

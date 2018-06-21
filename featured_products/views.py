@@ -20,6 +20,7 @@ def save_product(request):
             django_product.rating_count = product.rating_count
             django_product.hotscore    = product.hotscore
             django_product.price       = product.price
+            django_product.image       = product.image
             django_product.category    = "Programming"
 
             django_product.save()

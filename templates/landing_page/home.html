@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{%block content%}
+
+<style>
+ .jumbotron{
+    background-color: #FCEFE7;
+    }
+</style>
+
+{% include 'items/jumbotron.html' %}
+
+
+{% include 'landing_page/product_navbar.html' %}
+
+<hr>
+
+{% if item_list %}
+{% include 'items/item_card.html' with item_list=item_list%}
+{% else%}
+{% include 'items/item_card.html' with item_list=products %}
+{% endif %}
+
+
+{% endblock %}
