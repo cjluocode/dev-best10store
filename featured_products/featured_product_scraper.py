@@ -18,6 +18,7 @@ class FeaturedProduct(object):
         self.hotscore = 90
         self.image    = ""
         self.price    = 1
+        self.comment_url = ""
 
 
     def get_products(self,q_word=None):
@@ -28,7 +29,7 @@ class FeaturedProduct(object):
         item_list = []
 
 
-        for page in range(1, 3):
+        for page in range(1, 2):
             print('loop ' + str(page) + " page")
 
             # set user agent
@@ -60,6 +61,13 @@ class FeaturedProduct(object):
 
                             # Parse the title,link,image,rating_count,rating
                             item_title = parse_title(item)
+
+
+                            item_comment_url = parse_comments_url(item_title)
+
+
+
+
                             item_link = parse_link(item)
                             item_image_url = parse_image(item)
                             item_rating_counts = parse_rating_count(item)
@@ -71,12 +79,14 @@ class FeaturedProduct(object):
                             new_item.title = item_title
                             new_item.link = item_link
                             new_item.image = item_image_url
+                            new_item.comment_url = item_comment_url
 
                             if item_rating_counts:
                                 new_item.rating_count = item_rating_counts
                             if item_rating:
                                 new_item.rating = item_rating
                                 new_item.hotscore = get_hotscore(item_rating)
+
 
 
                             item_list.append(new_item)

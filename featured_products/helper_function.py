@@ -1,3 +1,8 @@
+import urllib.parse
+import requests
+from lxml import html
+
+
 #Set xpath
 XPATH_ITEM_CONTAINER = "//div[@class='s-item-container']"
 XPATH_TITLE_1 = ".//h2[@class='a-size-medium s-inline  s-access-title  a-text-normal']/text()"
@@ -13,6 +18,7 @@ XPATH_RATING = ".//i[@class='a-icon a-icon-star a-star-4']/span[@class='a-icon-a
 def parse_title(item):
 
     raw_title = item.xpath(XPATH_TITLE_1)
+
     if not raw_title:
         raw_title = item.xpath(XPATH_TITLE_2)
 
@@ -22,6 +28,42 @@ def parse_title(item):
         return title
     else:
         return None
+
+
+
+def parse_comments_url(title):
+
+    try:
+        pre_url = 'https://www.goodreads.com/search'
+        query_title = urllib.parse.quote_plus(title)
+        url = pre_url + "?q=" + query_title
+
+
+
+        # print(url)
+        return url
+
+        # response = requests.get(url, timeout=5)
+
+
+            # parser = html.fromstring(response.content)
+
+
+            # table_body = parser.xpath("//table[@class='tableList']/tr")
+
+            # for tb in table_body:
+            #     good_title= tb.xpath(".//td[2]/a[@class='bookTitle']/span/text()")[0]
+            #     if good_title == title:
+            #         suffix_book_url = tb.xpath(".//a[@class='bookTitle']/@href")[0]
+            #         book_url = 'https://www.goodreads.com/' + suffix_book_url
+            #         print(book_url)
+
+
+    except Exception as e:
+        print(e)
+
+    # print(url)
+
 
 
 def parse_link(item):

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .featured_product_scraper import FeaturedProduct
-from .models import Product
+from .models import Product, Comment
 # Create your views here.
 
 def save_product(request):
@@ -10,6 +10,9 @@ def save_product(request):
         query_word = request.POST['query_word']
         product = FeaturedProduct()
         product_list = product.get_products(query_word)
+
+
+
 
         #Save product list to django model
         for product in product_list:
@@ -21,8 +24,9 @@ def save_product(request):
             django_product.hotscore    = product.hotscore
             django_product.price       = product.price
             django_product.image       = product.image
-            django_product.category    = "Programming"
+            django_product.comment_url = product.comment_url
 
+            django_product.category    = "Marriage"
             django_product.save()
 
 
@@ -34,5 +38,21 @@ def save_product(request):
         return render(request,'featured_products/save_product.html', context)
 
     return render(request,'featured_products/save_product.html')
+
+
+
+def product_detail(request, id):
+
+    product = Product.objects.get(id=id)
+    comments = Comment.objects.filter(product=product)
+    print(comments)
+
+    context = {
+        'product' : product,
+        'comments': comments,
+     }
+
+
+    return render(request,'featured_products/product_detail.html', context)
 
 

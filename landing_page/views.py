@@ -11,8 +11,10 @@ def home(request):
         category = request.GET.get('category')
         if category:
             products = Product.objects.filter(category=category)
+
             context = {
                 'products': products,
+                'category' : category,
             }
             return render(request,'landing_page/home.html', context)
 

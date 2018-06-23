@@ -1,0 +1,36 @@
+<!-- Search List Session-->
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-lx-12">
+
+{% for product in products %}
+<div class="card border-0">
+  <div class="card-header">
+          {{ product.title }}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote">
+
+       <p> <span class="float-left badge badge-pill badge-warning" >#{{ forloop.counter}}</span>
+               <a href="{{ product.link}}" target="_blank" class="float-right">View on Amazon</a>
+
+       </p>
+        <br>
+        <br>
+        <p class="text-center"><a href="{{ product.link }}" target="_blank"><img src="{{ product.image }}" height="150">&ensp;<span class="text-justify"></span></a></p>
+        <p></p>
+      <footer class="footer font-weight-light">
+          <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="30" width="30">Rating:{{ product.rating }}|Count:{{product.rating_count}}
+        <!--<span class="float-right">${{ item.price}}.00</span>-->
+          <a href="/products/detail/{{ product.id }}" class="float-right">Get detail</a>
+      </footer>
+    </blockquote>
+  </div>
+</div>
+            <hr>
+<br>
+{% endfor %}
+</div>
+
+</div>
+    </div>

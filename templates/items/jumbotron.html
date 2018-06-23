@@ -1,13 +1,12 @@
 
 <!-- Junbotron Area-->
-<div class="jumbotron jumbotron-fluid">
-  <div class="container text-center">
-      <p class="display-4 font-weight-bold">Best10</p>
-      <br>
+<!--<div class="jumbotron jumbotron-fluid">-->
+  <div class="container-fluid text-center search-container">
+      <h1 class="title-text">Best10</h1>
     <p class="h4 font-weight-light">Find top 10 items you want with no effort</p>
-      <br>
-    <br>
-      <form method="POST" action="/result/"> {% csrf_token %}
+      <div class="row">
+          <div class="col-8 offset-2">
+              <form method="POST" action="/result/"> {% csrf_token %}
       <div class="input-group">
      <input type="text" class="form-control" name="query_word" placeholder="Enter here...">
      <span class="input-group-btn">
@@ -15,5 +14,10 @@
   </span>
       </div>
 </form>
+
+          </div>
+      </div>
+
+
   </div>
-</div>
+<!--</div>-->
