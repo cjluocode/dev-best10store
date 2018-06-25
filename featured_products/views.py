@@ -5,7 +5,6 @@ from .models import Product, Comment
 
 def save_product(request):
 
-
     if request.method == "POST":
         query_word = request.POST['query_word']
         product = FeaturedProduct()

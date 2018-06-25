@@ -2,7 +2,7 @@ from django.shortcuts import render
 from dev_best10.settings import *
 from .amazon_models import Item
 from .tests import testParse
-from featured_products.models import Product
+from .models import SearchItem
 from rq import Queue
 from worker import conn
 
@@ -30,22 +30,22 @@ def search_result(request):
             search_result = item.get_items(q_word=q_word)
 
             for product in search_result:
-                new_product = Product()
-                new_product.title = product.title
-                new_product.link  = product.link
-                new_product.image = product.image
-                new_product.rating_count = product.rating_count
-                new_product.rating = product.rating
-                new_product.hotscore = product.hotscore
-                new_product.price    = product.price
-                new_product.category = q_word
-                new_product.save()
+                new_item = SearchItem()
+                new_item.title = product.title
+                new_item.link  = product.link
+                new_item.image = product.image
+                new_item.rating_count = product.rating_count
+                new_item.rating = product.rating
+                new_item.hotscore = product.hotscore
+                new_item.price    = product.price
+                new_item.category = q_word
+                new_item.save()
 
-            saved_search_result = Product.objects.filter(category=q_word)
+            saved_search_result = SearchItem.objects.filter(query_word=q_word)
 
             context = {
-             # "item_list": search_result,
-                'item_list': saved_search_result,
+             "item_list": search_result,
+                # 'item_list': saved_search_result,
             }
             return render(request,'items/search_result.html', context)
         else:

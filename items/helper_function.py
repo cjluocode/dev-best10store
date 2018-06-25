@@ -19,6 +19,8 @@ def parse_title(item):
 
     if len(raw_title) > 0 :
         title = raw_title[0]
+
+        print(title)
         return title
     else:
         return None
@@ -40,10 +42,10 @@ def parse_link(item):
 def parse_image(item):
 
     raw_image = item.xpath(XPATH_IMAGE)
+
     if len(raw_image) >= 1:
         image = raw_image[-1]
         return image
-
     else:
         return None
 
@@ -84,6 +86,25 @@ def parse_rating(item):
 
     except Exception as e:
         print(e)
+
+def parse_price(item):
+
+    raw_price = item.xpath(".//span[@class='sx-price-whole']/text()")
+
+    if len(raw_price) > 0:
+        price = raw_price[0]
+
+        # print(price)
+        return price
+
+
+
+
+
+
+
+
+
 
 
 

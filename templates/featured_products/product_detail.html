@@ -8,7 +8,7 @@
 <div class="jumbotron bg-light">
     <div class="row">
         <div class="col-3">
-        <p class="float-left"> <img src="{{product.image}}" height="250"></p>
+        <p class="float-left"> <img src="{{product.image}}" height="200" width="180"></p>
         </div>
         <div class="col-9">
              <h3 class="">{{ product.title }}</h3>
@@ -40,7 +40,7 @@
  </h3>
       <br>
 {% for comment in comments %}
-     {{ comment.content|linebreaks }}
+     <p class="lead">{{ comment.content | linebreaks }}</p>
             <p class="content-text">-by anonymous users from Goodreads</p>
 
       {% endfor %}

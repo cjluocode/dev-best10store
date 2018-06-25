@@ -66,6 +66,8 @@ class Item(object):
                             item_image_url = parse_image(item)
                             item_rating_counts = parse_rating_count(item)
                             item_rating = parse_rating(item)
+                            item_price = parse_price(item)
+
 
 
                             #Create new item then append to
@@ -73,6 +75,9 @@ class Item(object):
                             new_item.title = item_title
                             new_item.link = item_link
                             new_item.image = item_image_url
+
+                            new_item.price = item_price
+                            # print(new_item.price)
 
                             if item_rating_counts:
                                 new_item.rating_count = item_rating_counts
