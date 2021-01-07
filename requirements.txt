@@ -8,7 +8,7 @@ django-bootstrap3==10.0.1
 fake-useragent==0.1.10
 gunicorn==19.8.1
 idna==2.6
-lxml==4.2.1
+lxml==4.6.2
 newrelic==3.2.1.93
 psycopg2==2.7.4
 psycopg2-binary==2.7.4
