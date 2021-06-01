@@ -20,4 +20,4 @@ rq==0.11.0
 scrapy-proxymesh==0.0.3
 stem==1.6.0
 toolz==0.9.0
-urllib3==1.22
+urllib3==1.26.5
